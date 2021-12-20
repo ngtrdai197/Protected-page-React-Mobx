@@ -1,21 +1,25 @@
 import { Container } from 'typedi';
-import { makeAutoObservable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { AuthService } from '../../services/auth.service';
 
 export class LoginViewModel {
   public authService: AuthService = Container.get(AuthService);
 
+  @observable
   public count = 0;
+
+  @observable
   public msg = '';
 
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this);
   }
 
   public effect = () => {
     this.authService.onLogout();
   };
 
+  @action.bound
   public increment = () => {
     this.count += 1;
     this.msg = 'Hi there !';
@@ -29,3 +33,5 @@ export class LoginViewModel {
     this.authService.onLogout();
   };
 }
+
+export const loginVm = new LoginViewModel();

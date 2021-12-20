@@ -1,28 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../enums/routes';
-import { Observer } from 'mobx-react';
-import { LoginViewModel } from './login.vm';
+import { observer, Observer } from 'mobx-react';
+import { loginVm } from './login.vm';
 import { MessageText } from '../../common-views/message/message';
 
-const LoginPage: React.FC = () => {
-  const vm = new LoginViewModel();
+const LoginPage: React.FC = observer(() => {
+  console.log('Re-rendering ...');
   return (
     <React.Fragment>
       <h3>Login Page</h3>
       <p>
         <Observer render={() => <button
-          onClick={vm.doLogin}>{vm.authService.isAuthenticated ? 'Logged in' : 'Plz login'}</button>} />
-        <button onClick={vm.doLogout}>Log out</button>
+          onClick={loginVm.doLogin}>{loginVm.authService.isAuthenticated ? 'Logged in' : 'Plz login'}</button>} />
+        <button onClick={loginVm.doLogout}>Log out</button>
       </p>
-      <button onClick={vm.increment}>Increase number</button>
-      <Observer render={() => <h3>Count: {vm.count}</h3>} />
-      <Link to={ROUTES.WELCOME}>Push to protected page</Link>
+      <button onClick={loginVm.increment}>Increase number</button>
+      <Observer render={() => <h3>Count: {loginVm.count}</h3>} />
+      <Link to={ROUTES.WELCOME}>Push to protected welcome page</Link>
+      <br />
+      <Link to={ROUTES.HOME}>Push to protected index page</Link>
       <hr />
-      <MessageText />
+      <Observer render={() => <MessageText msg={loginVm.msg} />} />
     </React.Fragment>
   );
-};
+});
+
 export default LoginPage;
-
-

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import './mobx.config';
 
 import { ROUTES } from './enums/routes';
 import { PageNotFound } from './pages/page-not-found/page-not-found';
 import { ProtectedRoute } from './common-views/protected-route/protected-route';
-import { LoadingPage } from './common-views/loading/loading';
+import { LoadingPage } from './pages/loading-page/loading-screen';
 
 const LoginPage = Loadable(
   {
@@ -19,6 +20,12 @@ const NxWelcomePage = Loadable(
     loading: LoadingPage
   }
 );
+const HomePage = Loadable(
+  {
+    loader: async () => (await import('./pages/home/home-screen')),
+    loading: LoadingPage
+  }
+);
 
 export function App() {
   return (
@@ -28,6 +35,13 @@ export function App() {
              element={
                <ProtectedRoute>
                  <NxWelcomePage title='react-app' />
+               </ProtectedRoute>
+             }
+      />
+      <Route path={ROUTES.HOME}
+             element={
+               <ProtectedRoute>
+                 <HomePage />
                </ProtectedRoute>
              }
       />

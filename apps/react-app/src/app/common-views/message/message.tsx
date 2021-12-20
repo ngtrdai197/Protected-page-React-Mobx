@@ -1,11 +1,9 @@
 import React from 'react';
-import { Observer } from 'mobx-react';
-import { LoginViewModel } from '../../pages/login/login.vm';
 
 interface IProps {
+  msg: string;
 }
 
-export const MessageText: React.FC<IProps> = (props) => {
-  const vm = new LoginViewModel();
-  return <Observer render={() => <strong>Message received: {vm.msg}</strong>} />;
+export const MessageText: React.FC<IProps> = ({ msg }) => {
+  return <strong>Message received: {msg}</strong>;
 };

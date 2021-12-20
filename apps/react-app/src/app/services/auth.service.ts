@@ -1,19 +1,25 @@
 import { Service } from 'typedi';
-import { makeAutoObservable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 @Service()
 export class AuthService {
-
+  @observable
   public isAuthenticated = false;
 
+  @observable
+  public username: string = '';
+
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this);
   }
 
+  @action.bound
   public onLogin() {
     this.isAuthenticated = true;
+    this.username = 'Dai Nguyen';
   }
 
+  @action.bound
   public onLogout() {
     this.isAuthenticated = false;
   }
