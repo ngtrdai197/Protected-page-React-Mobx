@@ -7,6 +7,10 @@
     "build": "nx build",
     "test": "nx test"
   },
+  "lint-staged": {
+    "*.{ts,tsx}": "tslint",
+    "*.{ts,tsx,json,css}": "prettier --write \"src/**/*.ts\""
+  },
   "private": true,
   "dependencies": {
     "antd": "^4.17.4",
@@ -53,7 +57,9 @@
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.26.1",
     "eslint-plugin-react-hooks": "4.2.0",
+    "husky": "^7.0.4",
     "jest": "27.2.3",
+    "lint-staged": "^12.1.5",
     "prettier": "^2.3.1",
     "react-test-renderer": "17.0.2",
     "ts-jest": "27.0.5",
