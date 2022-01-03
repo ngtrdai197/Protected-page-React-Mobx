@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
+    "lint-staged": "lint-staged",
     "test": "nx test"
   },
   "lint-staged": {
