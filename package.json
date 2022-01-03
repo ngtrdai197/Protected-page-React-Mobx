@@ -9,8 +9,7 @@
     "test": "nx test"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "tslint",
-    "*.{ts,tsx,json,css}": "prettier --write \"src/**/*.ts\""
+    "*.{ts,tsx,json,css}": "prettier --write"
   },
   "private": true,
   "dependencies": {
