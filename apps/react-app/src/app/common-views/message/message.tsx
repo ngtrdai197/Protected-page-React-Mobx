@@ -4,6 +4,6 @@ interface IProps {
   msg: string;
 }
 
-export const MessageText: React.FC<IProps> = ({ msg }) => {
-  return <strong>Message received: {msg}</strong>;
+export const MessageText: React.FC<IProps> = (props) => {
+  return <strong>Message received: {props.msg}</strong>;
 };
