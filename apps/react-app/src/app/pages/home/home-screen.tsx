@@ -8,7 +8,8 @@ const HomePage = observer(() => {
   return (
     <>
       <h4>Index page</h4>
-      {message(homeVm.authService.username)}
+      {message(homeVm.authService.username)
+      }
     </>
   );
 });
